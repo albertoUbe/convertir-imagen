@@ -4,15 +4,21 @@ import java.io.IOException;
 
 import es.img.convert.Clases.Comando;
 import es.img.convert.Clases.ConversorImpl;
-import es.img.convert.Clases.Imagen;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        String[] comando = {Comando.COMANDO[0], Imagen.IMAGEN_ENTRADA, Imagen.IMAGEN_SALIDA};
+        if (args.length != 2) {
+            System.err.println("Uso: java Main <imagen_entrada> <imagen_salida>");
+            System.exit(1);
+        }
+
+        String entradaImagen = args[0];
+        String salidaImagen = args[1];
+
+        String[] comando = {Comando.COMANDO[0], entradaImagen, salidaImagen};
 
         ConversorImpl conversion = new ConversorImpl();
-
         conversion.conversor(comando);
 
     }
